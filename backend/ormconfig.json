@@ -7,8 +7,8 @@
    "database": "test",
    "synchronize": false,
    "logging": false,
-   "entities": ["src/**/*.entity.ts"],
-   "migrations": ["src/migration/**/*.ts"],
+   "entities": ["build/**/*.entity.js"],
+   "migrations": ["build/**/*.js"],
    "subscribers": ["src/subscriber/**/*.ts"],
    "cli": {
       "entitiesDir": "src/entity",

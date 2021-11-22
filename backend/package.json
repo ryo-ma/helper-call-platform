@@ -23,12 +23,17 @@
    },
    "dependencies": {
       "@nestjs/common": "^8.0.0",
+      "@nestjs/config": "^1.1.1",
       "@nestjs/core": "^8.0.0",
       "@nestjs/jwt": "^8.0.0",
+      "@nestjs/passport": "^8.0.1",
       "@nestjs/platform-express": "^8.0.0",
       "@nestjs/typeorm": "^8.0.2",
+      "bcrypt": "^5.0.1",
+      "body-parser": "^1.18.1",
       "class-transformer": "^0.5.0",
       "class-validator": "^0.13.2",
+      "express": "^4.15.4",
       "passport": "^0.5.0",
       "passport-jwt": "^4.0.0",
       "passport-local": "^1.0.0",
@@ -36,9 +41,7 @@
       "reflect-metadata": "^0.1.10",
       "rimraf": "^3.0.2",
       "rxjs": "^7.2.0",
-      "typeorm": "0.2.41",
-      "express": "^4.15.4",
-      "body-parser": "^1.18.1"
+      "typeorm": "0.2.41"
    },
    "devDependencies": {
       "@nestjs/cli": "^8.0.0",
@@ -63,7 +66,7 @@
       "ts-loader": "^9.2.3",
       "ts-node": "3.3.0",
       "tsconfig-paths": "^3.10.1",
-      "typescript": "3.3.3333"
+      "typescript": "4.5.2"
    },
    "jest": {
       "moduleFileExtensions": [
