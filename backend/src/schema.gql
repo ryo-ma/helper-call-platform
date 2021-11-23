@@ -2,11 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Device {
+  id: Float!
+  serialCode: String!
+  type: String!
+  user: User!
+}
+
 type User {
   id: ID!
   email: String!
   name: String!
   tel: String!
+  devices: [Device!]!
 }
 
 type Token {
@@ -15,11 +23,14 @@ type Token {
 
 type Query {
   getUser(id: Int!): User!
+  getDevice(id: Int!): Device!
+  getDevicesByUser(id: Int!): [Device!]!
 }
 
 type Mutation {
   login(password: String!, username: String!): Token!
   singup(user: CreateUserInput!): User!
+  createDevice(device: CreateDeviceInput!): Device!
 }
 
 input CreateUserInput {
@@ -27,4 +38,10 @@ input CreateUserInput {
   password: String!
   name: String!
   tel: String!
+}
+
+input CreateDeviceInput {
+  serialCode: String!
+  userId: Float
+  type: String!
 }

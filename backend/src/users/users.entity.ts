@@ -31,5 +31,6 @@ export class User {
   tel: string;
 
   @ManyToOne(type => Device, device => device.user)
+  @Field(() => [Device])
   devices: Device[];
 }

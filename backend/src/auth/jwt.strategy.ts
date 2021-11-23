@@ -11,9 +11,6 @@ interface JWTPayload  {
   userEmail: User['email'];
 }
 
-/**
- * @description JWTの認証処理を行うクラス
- */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(configService: ConfigService) {

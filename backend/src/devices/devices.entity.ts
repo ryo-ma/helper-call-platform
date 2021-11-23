@@ -1,6 +1,6 @@
 
 import { Entity, Column, JoinColumn, Unique, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { ObjectType } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 import { IsNotEmpty, Length } from "class-validator";
 import { User } from '../users/users.entity';
 
@@ -9,25 +9,27 @@ import { User } from '../users/users.entity';
 @Unique(['serialCode'])
 export class Device{
   @PrimaryGeneratedColumn()
+  @Field()
   id: number;
 
   @Column()
   @Length(32, 32, {message: 'The serialCode must be at 32 characters'})
   @IsNotEmpty({ message: 'The serialCode is required' })
+  @Field()
   serialCode: string;
+
+  @Column()
+  @Length(2, 32, {message: 'The type must be at 32 characters'})
+  @IsNotEmpty({ message: 'The type is required' })
+  @Field()
+  type: string;
 
   @Column()
   userId: number;
 
   @ManyToOne(type => User, user => user.devices)
   @JoinColumn({ name: 'userId' })
+  @Field(() => User)
   user: User;
 
-  @Column()
-  @Length(2, 50, {message: 'The name must be at least 2 but not longer than 50 characters'})
-  name: string;
-
-  @Column()
-  @Length(6, 14, {message: 'The tel must be at least 6 but not longer than 14 characters'})
-  tel: string;
 }
