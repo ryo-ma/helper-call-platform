@@ -1,7 +1,7 @@
 import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Args, Query, Int } from '@nestjs/graphql';
 import { GraphqlJwtAuthGuard } from '../auth/graphql-jwt-auth.guard';
-import { CreateFacilityInput } from './CreateFacilityInput.input';
+import { CreateFacilityInput } from './create_facility.input';
 import { Facility } from './facilities.entity';
 import { FacilitiesService } from './facilities.service';
 

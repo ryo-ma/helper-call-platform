@@ -23,12 +23,12 @@ export class Facility {
   @Field()
   type: string;
 
-  @Column()
+  @Column("float")
   @Length(2, 32, { message: "The longitude must be at 32 characters" })
   @Field()
   longitude: number;
 
-  @Column()
+  @Column("float")
   @Length(2, 32, { message: "The latitude must be at 32 characters" })
   @Field()
   latitude: number;

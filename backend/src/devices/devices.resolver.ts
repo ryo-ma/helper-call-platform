@@ -1,7 +1,7 @@
 import { UseGuards } from '@nestjs/common';
 import { Resolver, Mutation, Query, Args, Context, Int } from '@nestjs/graphql';
 import { GraphqlJwtAuthGuard } from '../auth/graphql-jwt-auth.guard';
-import { CreateDeviceInput } from './CreateDeviceInput.input';
+import { CreateDeviceInput } from './create_device.input';
 import { Device } from './devices.entity';
 import { DevicesService } from './devices.service';
 

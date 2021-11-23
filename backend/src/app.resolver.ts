@@ -1,4 +1,4 @@
-import { UseGuards, Body } from "@nestjs/common";
+import { Body, UseGuards } from "@nestjs/common";
 import { Args, Context, Mutation, Resolver } from "@nestjs/graphql";
 import { AppService } from "./app.service";
 import { AuthService } from "./auth/auth.service";
@@ -8,14 +8,16 @@ import { Token } from "./auth/token.entity";
 import { User } from "./users/users.entity";
 import { UsersService } from "./users/users.service";
 import bcrypt = require("bcrypt");
-import { CreateUserInput } from "./users/createUser.input";
+import { CreateUserInput } from "./users/create_user.input";
+import { GraphqlJwtAuthGuard } from "./auth/graphql-jwt-auth.guard";
+import { StringifyOptions } from "querystring";
 
 @Resolver()
 export class AppResolver {
   constructor(
     private readonly appService: AppService,
     private readonly authService: AuthService,
-    private readonly usersService: UsersService
+    private readonly usersService: UsersService,
   ) {}
   @UseGuards(LocalAuthGuard)
   @Mutation(() => Token)
@@ -28,7 +30,7 @@ export class AppResolver {
   }
 
   @Mutation(() => User)
-  async singup(@Args('user') user: CreateUserInput ){
+  async singup(@Args("user") user: CreateUserInput) {
     const hashedPassword = await bcrypt.hash(user.password, 10);
     const result = await this.usersService.create({
       ...user,

@@ -13,6 +13,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { AppResolver } from './app.resolver';
+import { CallsModule } from './calls/calls.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { AppResolver } from './app.resolver';
     VisitsModule,
     FacilitiesModule,
     NotificationsModule,
+    CallsModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],

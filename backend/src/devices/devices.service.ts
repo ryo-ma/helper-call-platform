@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { InsertResult, Repository } from "typeorm";
-import { CreateDeviceInput } from "./CreateDeviceInput.input";
+import { CreateDeviceInput } from "./create_device.input";
 import { Device } from "./devices.entity";
 
 @Injectable()
@@ -23,10 +23,5 @@ export class DevicesService {
     return await this.deviceRepository.insert({
       ...device
     });
-    //return await this.deviceRepository.insert({
-    //  serialCode: device.serialCode,
-    //  type: device.type,
-    //  userId: device.userId
-    //});
   }
 }
