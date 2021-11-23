@@ -16,22 +16,19 @@ interface JWTPayload  {
 export class AuthService {
   constructor(private jwtService: JwtService, private usersService: UsersService) {}
 
-  // ユーザーを認証する
-  async validateUser(email: User['email'], pass: User['password']): Promise<PasswordOmitUser | null> {
-    const user = await this.usersService.findOne(email);
+  async validateUser(username: User['email'], password: User['password']): Promise<PasswordOmitUser | null> {
+    const user = await this.usersService.findByEmail(username);
 
-    if (user && bcrypt.compareSync(pass, user.password)) {
+    if (user && bcrypt.compareSync(password, user.password)) {
       const { password, ...result } = user;
-
       return result;
     }
 
     return null;
+
   }
 
-  // jwt tokenを返す
   async login(user: PasswordOmitUser) {
-    // jwtにつけるPayload情報
     const payload: JWTPayload = { userId: user.id, userEmail: user.email};
 
     return {

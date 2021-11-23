@@ -15,11 +15,11 @@ import { LocalStrategy } from './local.strategy';
     UsersModule,
     PassportModule,
 
-    // JWTを使うための設定をしている
     JwtModule.registerAsync({
       useFactory: async (configService: ConfigService) => {
         return {
-          secret: configService.get<string>('JWT_SECRET_KEY'),
+          //secret: configService.get<string>('JWT_SECRET_KEY'),
+          secret: 'secret',
           signOptions: {
             expiresIn: '1200s'
           },

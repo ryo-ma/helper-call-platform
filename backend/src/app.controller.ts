@@ -12,18 +12,16 @@ export class AppController {
     private readonly appService: AppService,
     private readonly authService: AuthService,
   ) {}
+
   @UseGuards(AuthGuard("local"))
   @Post("login")
   async login(@Request() req: { user: PasswordOmitUser }) {
-    const user = req.user;
     return this.authService.login(req.user);
   }
 
   @UseGuards(AuthGuard("jwt"))
   @Get("profile")
   getProfile(@Request() req: { user: PasswordOmitUser }) {
-    const user = req.user;
-
     return req.user;
   }
 
