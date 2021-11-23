@@ -20,7 +20,7 @@ import { LocalStrategy } from './local.strategy';
           //secret: configService.get<string>('JWT_SECRET_KEY'),
           secret: 'secret',
           signOptions: {
-            expiresIn: '1200s'
+            expiresIn: '12000s'
           },
         };
       },

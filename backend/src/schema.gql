@@ -17,6 +17,15 @@ type User {
   devices: [Device!]!
 }
 
+type Facility {
+  id: Float!
+  name: String!
+  type: String!
+  longitude: Float!
+  latitude: Float!
+  address: String!
+}
+
 type Token {
   accessToken: String!
 }
@@ -25,12 +34,15 @@ type Query {
   getUser(id: Int!): User!
   getDevice(id: Int!): Device!
   getDevicesByUser(id: Int!): [Device!]!
+  getFacility(id: Int!): Facility!
+  getFacilities(id: Int!): [Facility!]!
 }
 
 type Mutation {
   login(password: String!, username: String!): Token!
   singup(user: CreateUserInput!): User!
   createDevice(device: CreateDeviceInput!): Device!
+  createFacility(facility: CreateFacilityInput!): Facility!
 }
 
 input CreateUserInput {
@@ -43,5 +55,13 @@ input CreateUserInput {
 input CreateDeviceInput {
   serialCode: String!
   userId: Float
+  type: String!
+}
+
+input CreateFacilityInput {
+  name: String!
+  address: String!
+  latitude: Float!
+  longitude: Float!
   type: String!
 }

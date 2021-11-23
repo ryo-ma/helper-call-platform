@@ -21,9 +21,12 @@ export class DevicesService {
 
   async create(device: CreateDeviceInput): Promise<InsertResult> {
     return await this.deviceRepository.insert({
-      serialCode: device.serialCode,
-      type: device.type,
-      userId: device.userId
+      ...device
     });
+    //return await this.deviceRepository.insert({
+    //  serialCode: device.serialCode,
+    //  type: device.type,
+    //  userId: device.userId
+    //});
   }
 }

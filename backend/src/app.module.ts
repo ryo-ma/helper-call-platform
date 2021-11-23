@@ -32,6 +32,6 @@ import { AppResolver } from './app.resolver';
     NotificationsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, FacilitiesService, AppResolver],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {}

@@ -13,7 +13,6 @@ export class LocalAuthGuard extends AuthGuard('local') {
 
     if (gqlReq) {
       gqlReq.body = ctx.getArgs();
-      console.log("getRequest")
       return gqlReq;
     }
     return context.switchToHttp().getRequest();
