@@ -10,20 +10,7 @@ type PasswordOmitUser = Omit<User, "password">;
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private readonly authService: AuthService,
   ) {}
-
-  @UseGuards(AuthGuard("local"))
-  @Post("login")
-  async login(@Request() req: { user: PasswordOmitUser }) {
-    return this.authService.login(req.user);
-  }
-
-  @UseGuards(AuthGuard("jwt"))
-  @Get("profile")
-  getProfile(@Request() req: { user: PasswordOmitUser }) {
-    return req.user;
-  }
 
   @Get()
   getHello(): string {
