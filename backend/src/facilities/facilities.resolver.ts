@@ -5,7 +5,6 @@ import { CreateFacilityInput } from './create_facility.input';
 import { Facility } from './facilities.entity';
 import { FacilitiesService } from './facilities.service';
 
-@Resolver()
 
 @Resolver((of) => Facility)
 export class FacilitiesResolver {

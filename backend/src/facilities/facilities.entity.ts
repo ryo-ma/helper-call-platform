@@ -1,6 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Field, ObjectType } from "@nestjs/graphql";
 import { IsNotEmpty, Length } from "class-validator";
+import { Notification } from "../notifications/notifications.entity";
+import { Visit } from "../visits/visits.entity";
 
 @Entity()
 @ObjectType()
@@ -38,4 +40,12 @@ export class Facility {
   @IsNotEmpty({ message: "The address is required" })
   @Field()
   address: string;
+
+  @OneToMany((type) => Notification, (notification) => notification.facility)
+  @Field(() => [Notification])
+  notifications: Notification[];
+
+  @OneToMany((type) => Visit, (visit) => visit.facility)
+  @Field(() => [Visit])
+  visits: Visit[];
 }

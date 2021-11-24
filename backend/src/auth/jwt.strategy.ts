@@ -17,8 +17,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      // TODO: ConfigServiceがundefinedになるので後ほど調査
-      secretOrKey: "secret"
+      secretOrKey: configService.get<string>('JWT_SECRET_KEY')
     });
   }
 

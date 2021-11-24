@@ -2,19 +2,30 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Call {
+  id: Float!
+  isCanceled: Boolean!
+  createdAt: DateTime!
+  device: Device!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Device {
   id: Float!
   serialCode: String!
   type: String!
   user: User!
+  calls: [Call!]!
 }
 
-type User {
-  id: ID!
-  email: String!
-  name: String!
-  tel: String!
-  devices: [Device!]!
+type Notification {
+  id: Float!
+  type: String!
+  facility: Facility!
 }
 
 type Facility {
@@ -24,6 +35,28 @@ type Facility {
   longitude: Float!
   latitude: Float!
   address: String!
+  notifications: [Notification!]!
+  visits: [Visit!]!
+}
+
+type Visit {
+  id: ID!
+  todayAppearance: String!
+  disabilityType: String!
+  disabilityDescription: String!
+  startDateTime: DateTime!
+  endDateTime: DateTime!
+  facility: Facility!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  tel: String!
+  devices: [Device!]!
+  visits: [Visit!]!
 }
 
 type Token {
@@ -34,15 +67,24 @@ type Query {
   getUser(id: Int!): User!
   getDevice(id: Int!): Device!
   getDevicesByUser(id: Int!): [Device!]!
+  getVisit(id: Int!): Visit!
+  getVisits(id: Int!): [Visit!]!
   getFacility(id: Int!): Facility!
   getFacilities(id: Int!): [Facility!]!
+  getNotification(id: Int!): Notification!
+  getNotifications(id: Int!): [Notification!]!
+  getCall(id: Int!): Call!
+  getCalls: [Call!]!
 }
 
 type Mutation {
   login(password: String!, username: String!): Token!
   singup(user: CreateUserInput!): User!
   createDevice(device: CreateDeviceInput!): Device!
+  createVisit(visit: CreateVisitInput!): Visit!
   createFacility(facility: CreateFacilityInput!): Facility!
+  createNotification(notification: CreateNotificationInput!): Notification!
+  createCall(call: CreateCallInput!): Call!
 }
 
 input CreateUserInput {
@@ -58,10 +100,31 @@ input CreateDeviceInput {
   type: String!
 }
 
+input CreateVisitInput {
+  todayAppearance: String!
+  disabilityType: String!
+  disabilityDescription: String!
+  startDateTime: DateTime!
+  endDateTime: DateTime!
+  userId: Float!
+  facilityId: Float!
+}
+
 input CreateFacilityInput {
   name: String!
   address: String!
   latitude: Float!
   longitude: Float!
   type: String!
+}
+
+input CreateNotificationInput {
+  facilityId: Float!
+  type: String!
+}
+
+input CreateCallInput {
+  isCanceled: Boolean!
+  createdAt: DateTime!
+  deviceId: Float!
 }

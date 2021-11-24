@@ -1,8 +1,9 @@
-
-import { Entity, Column, JoinColumn, Unique, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, JoinColumn, Unique, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 import { ObjectType, Field } from '@nestjs/graphql';
 import { IsNotEmpty, Length } from "class-validator";
 import { User } from '../users/users.entity';
+import { Call } from '../calls/calls.entity';
+import { callbackify } from 'util';
 
 @Entity()
 @ObjectType()
@@ -32,4 +33,7 @@ export class Device{
   @Field(() => User)
   user: User;
 
+  @OneToMany(type => Call, call => call.device)
+  @Field(() => [Call])
+  calls: Call[];
 }
