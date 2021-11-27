@@ -11,7 +11,7 @@
 * [ヘルプボタン](./devices/help_button) ： シンプルなLED付きボタンです。高齢者なども含め最もなじみやすいユーザインタフェースのため利用方法がわかりやすいです。
 
 # アーキテクチャ図
-<img width="1000" alt="スクリーンショット 2021-11-28 2 13 55" src="https://user-images.githubusercontent.com/6661165/143690642-a738fb9b-ed7d-4c45-a3e2-5989e652ca3f.png">
+<img width="1000" alt="スクリーンショット 2021-11-28 2 19 30" src="https://user-images.githubusercontent.com/6661165/143690792-4f2461ca-4c75-406a-bd54-aff3eb5ea432.png">
 
 
 # Getting Started
