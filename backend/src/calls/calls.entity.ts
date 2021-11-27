@@ -4,11 +4,8 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Unique,
 } from "typeorm";
 import { Field, ObjectType } from "@nestjs/graphql";
-import { IsNotEmpty, Length } from "class-validator";
-import { User } from "../users/users.entity";
 import { Device } from "../devices/devices.entity";
 
 @Entity()
