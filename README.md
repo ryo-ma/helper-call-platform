@@ -7,8 +7,8 @@
 
 # 利用可能デバイス一覧
 
-* [マッスルヘルパー](./devices/muscle_helper) [詳細はこちら](./devices/muscle_helper)
-* [ヘルプボタン](./devices/help_button) [詳細はこちら](./devices/help_button)
+* [マッスルヘルパー](./devices/muscle_helper) ： 筋電センサーを用いたデバイスです。特定の部位の筋肉を稼働させることができればコールを行うことができます。
+* [ヘルプボタン](./devices/help_button) ： シンプルなLED付きボタンです。高齢者なども含め最もなじみやすいユーザインタフェースのため利用方法がわかりやすいです。
 
 # Getting Started
 
