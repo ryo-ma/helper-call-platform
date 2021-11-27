@@ -18,5 +18,21 @@
 
 ## プラットフォームの起動
 
+本プロジェクトを
+
+```bash
+git clone https://github.com/ryo-ma/helper-call-platform.git
+```
+
+### 各種コンテナの起動
+
+* Next.js
+* Next.js
+* PostgreSQL
+
+```bash
+docker-compose up
+```
+
 ## デバイスの準備
 [利用可能デバイス一覧](#利用可能デバイス一覧)のそれぞれのリンクから準備方法に進むことができます。
