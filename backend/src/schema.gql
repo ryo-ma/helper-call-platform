@@ -125,6 +125,6 @@ input CreateNotificationInput {
 
 input CreateCallInput {
   isCanceled: Boolean!
-  createdAt: DateTime!
-  deviceId: Float!
+  serialCode: String!
+  deviceId: Float
 }

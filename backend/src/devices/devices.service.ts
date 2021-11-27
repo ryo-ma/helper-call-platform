@@ -18,6 +18,9 @@ export class DevicesService {
   async findByUser(userId: Device["userId"]): Promise<Device[] | undefined> {
     return this.deviceRepository.find({ where: { userId } });
   }
+  async findBySerialCode(serialCode: Device["serialCode"]): Promise<Device | undefined> {
+    return this.deviceRepository.findOne({ where: { serialCode} });
+  }
 
   async create(device: CreateDeviceInput): Promise<InsertResult> {
     return await this.deviceRepository.insert({

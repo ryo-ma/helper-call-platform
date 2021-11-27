@@ -6,17 +6,19 @@ import { CallsService } from "./calls.service";
 import { CreateCallInput } from "./create_call.input";
 import { ConfigService } from "@nestjs/config";
 import { LineClient } from "../clients/line_clients";
+import { DevicesService } from "../devices/devices.service";
 
 @Resolver((of) => Call)
 export class CallsResolver {
   private lineClient: LineClient;
   constructor(
     private callsService: CallsService,
+    private devicesService: DevicesService,
     configService: ConfigService,
   ) {
     this.lineClient = new LineClient(
       configService.get<string>("LINE_BOT_CHANNEL_ACCESS_TOKEN"),
-    )
+    );
   }
   @UseGuards(GraphqlJwtAuthGuard)
   @Mutation((returns) => Call)
@@ -24,6 +26,9 @@ export class CallsResolver {
     @Args({ name: "call" }) call: CreateCallInput,
     @Context() context,
   ) {
+    if (call.deviceId == null) {
+      call.deviceId = (await this.devicesService.findBySerialCode(call.serialCode)).id;
+    }
     const result = await this.callsService.create(call);
     const messageText = "利用者からコールがされました。サポートをお願いします。";
     this.lineClient.push({

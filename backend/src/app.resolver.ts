@@ -32,7 +32,6 @@ export class AppResolver {
 
   @Mutation(() => User)
   async singup(@Args("user") user: CreateUserInput) {
-    console.log(this.configService.get<number>("PASSWORD_SALT_ROUNDS"))
     const hashedPassword = await bcrypt.hash(user.password, Number(this.configService.get<number>("PASSWORD_SALT_ROUNDS")));
     const result = await this.usersService.create({
       ...user,

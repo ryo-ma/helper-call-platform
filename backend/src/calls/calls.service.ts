@@ -23,7 +23,8 @@ export class CallsService {
 
   async create(call: CreateCallInput): Promise<InsertResult> {
     return await this.callRepository.insert({
-      ...call
+      ...call,
+      createdAt: new Date()
     });
   }
 }

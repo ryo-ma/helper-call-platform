@@ -7,8 +7,8 @@ export class CreateCallInput {
   isCanceled: boolean;
 
   @Field()
-  createdAt: Date;
+  serialCode: string;
 
-  @Field()
+  @Field({nullable: true})
   deviceId: number;
 }
