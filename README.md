@@ -27,7 +27,7 @@ git clone https://github.com/ryo-ma/helper-call-platform.git
 ### 各種コンテナの起動
 
 * Next.js
-* Next.js
+* Nest.js
 * PostgreSQL
 
 ```bash
