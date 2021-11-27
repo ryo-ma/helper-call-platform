@@ -18,7 +18,7 @@
 
 ## プラットフォームの起動
 
-本プロジェクトを
+本プロジェクトをクローンします
 
 ```bash
 git clone https://github.com/ryo-ma/helper-call-platform.git
