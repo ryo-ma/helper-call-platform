@@ -10,6 +10,10 @@
 * [マッスルヘルパー](./devices/muscle_helper) ： 筋電センサーを用いたデバイスです。特定の部位の筋肉を稼働させることができればコールを行うことができます。
 * [ヘルプボタン](./devices/help_button) ： シンプルなLED付きボタンです。高齢者なども含め最もなじみやすいユーザインタフェースのため利用方法がわかりやすいです。
 
+# アーキテクチャ図
+<img width="1000" alt="スクリーンショット 2021-11-28 2 13 55" src="https://user-images.githubusercontent.com/6661165/143690642-a738fb9b-ed7d-4c45-a3e2-5989e652ca3f.png">
+
+
 # Getting Started
 
 ## プラットフォームの起動
