@@ -1,6 +1,16 @@
 version: '3'
 services:
-
+  backend:
+    build: ./backend/
+    tty: true
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend/:/backend
+      - /backend/node_modules
+    depends_on:
+      - postgres
   postgres:
     image: "postgres:14"
     ports:
