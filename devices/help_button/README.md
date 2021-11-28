@@ -14,6 +14,7 @@ Help Button(ヘルプボタン)はコミュニケーションや移動にハン�
 * ラズパイ任意のバージョン(本READMEでは [Raspberry Pi Zero WH](https://www.switch-science.com/catalog/3646/)を使用します)
 * ジャンプワイヤー オス-メス、オス-オス 任意の数
 * LED付きボタン OMRON A16-1
+* 抵抗10Ω
 
 ## ラズパイセッティング
 
