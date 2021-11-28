@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import NavBar from '../components/NavBar'
+import SideBarWithHeader  from '../components/SideBarWithHeader'
 
 const Home: NextPage = () => {
   return (
-    <NavBar/>
+    <SideBarWithHeader><div>main contents</div></SideBarWithHeader>
   )
 }
 
