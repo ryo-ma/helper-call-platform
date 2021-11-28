@@ -8,26 +8,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.7.0",
-    "@emotion/styled": "^11.6.0",
-    "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
-    "@mui/icons-material": "^5.2.0",
-    "@mui/material": "^5.2.1",
     "next": "12.0.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "recharts": "^2.1.6"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@types/node": "16.11.10",
     "@types/react": "17.0.37",
-    "autoprefixer": "^10.4.0",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
-    "eslint-plugin-tailwindcss": "^1.17.2",
-    "postcss": "^8.4.4",
-    "tailwindcss": "^2.2.19",
+    "framer-motion": "^4",
     "typescript": "4.5.2"
   }
 }
