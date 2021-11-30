@@ -38,20 +38,17 @@ import { ReactText } from 'react';
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  url: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'ダッシュボード', icon: FiHome },
-  { name: '予定管理', icon: FiTrendingUp },
-  { name: 'デバイス管理', icon: FiCompass },
-  { name: 'マイページ', icon: FiStar },
-  { name: '設定', icon: FiSettings },
+  { name: 'ダッシュボード', icon: FiHome, url: '/' },
+  { name: '予定管理', icon: FiTrendingUp, url: '/schedules' },
+  { name: 'デバイス管理', icon: FiCompass, url: '/devices' },
+  { name: 'マイページ', icon: FiStar, url: '/mypage' },
+  { name: '設定', icon: FiSettings, url: '/settings' },
 ];
 
-export default function SideBarWithHeader({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function Layout({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
@@ -66,7 +63,8 @@ export default function SideBarWithHeader({
         onClose={onClose}
         returnFocusOnClose={false}
         onOverlayClick={onClose}
-        size="full">
+        size="full"
+      >
         <DrawerContent>
           <SidebarContent onClose={onClose} />
         </DrawerContent>
@@ -94,15 +92,16 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
-      {...rest}>
+      {...rest}
+    >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-            Helper Call
+          Helper Call
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} url={link.url}>
           {link.name}
         </NavItem>
       ))}
@@ -112,11 +111,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
 interface NavItemProps extends FlexProps {
   icon: IconType;
+  url: string;
   children: ReactText;
 }
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+const NavItem = ({ icon, url, children, ...rest }: NavItemProps) => {
   return (
-    <Link href="#" style={{ textDecoration: 'none' }}>
+    <Link href={url} style={{ textDecoration: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -128,7 +128,8 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
           bg: 'cyan.400',
           color: 'white',
         }}
-        {...rest}>
+        {...rest}
+      >
         {icon && (
           <Icon
             mr="4"
@@ -159,7 +160,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       justifyContent={{ base: 'space-between', md: 'flex-end' }}
-      {...rest}>
+      {...rest}
+    >
       <IconButton
         display={{ base: 'flex', md: 'none' }}
         onClick={onOpen}
@@ -172,7 +174,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         display={{ base: 'flex', md: 'none' }}
         fontSize="2xl"
         fontFamily="monospace"
-        fontWeight="bold">
+        fontWeight="bold"
+      >
         Logo
       </Text>
 
@@ -188,7 +191,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             <MenuButton
               py={2}
               transition="all 0.3s"
-              _focus={{ boxShadow: 'none' }}>
+              _focus={{ boxShadow: 'none' }}
+            >
               <HStack>
                 <Avatar
                   size={'sm'}
@@ -200,7 +204,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   display={{ base: 'none', md: 'flex' }}
                   alignItems="flex-start"
                   spacing="1px"
-                  ml="2">
+                  ml="2"
+                >
                   <Text fontSize="sm">Justina Clark</Text>
                   <Text fontSize="xs" color="gray.600">
                     Admin
@@ -213,7 +218,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             </MenuButton>
             <MenuList
               bg={useColorModeValue('white', 'gray.900')}
-              borderColor={useColorModeValue('gray.200', 'gray.700')}>
+              borderColor={useColorModeValue('gray.200', 'gray.700')}
+            >
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuItem>Billing</MenuItem>

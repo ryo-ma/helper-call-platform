@@ -1,12 +1,7 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import SideBarWithHeader  from '../components/SideBarWithHeader'
+import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
-  return (
-    <SideBarWithHeader><div>main contents</div></SideBarWithHeader>
-  )
-}
+  return <div>home</div>;
+};
 
-export default Home
+export default Home;
