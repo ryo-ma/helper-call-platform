@@ -29,7 +29,7 @@ export default function ScheduleCard(props: { schedule: Schedule }) {
       <Box p={5} minW="sm">
         <Heading fontSize="xl">{props.schedule.facilityName}</Heading>
         <Badge borderRadius="full" px="2" colorScheme="teal">
-          New
+          これから
         </Badge>
         <Text>
           {props.schedule.startDate} ~ {props.schedule.endDate}
