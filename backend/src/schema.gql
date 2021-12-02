@@ -68,7 +68,7 @@ type Query {
   getDevice(id: Int!): Device!
   getDevicesByUser(id: Int!): [Device!]!
   getVisit(id: Int!): Visit!
-  getVisits(id: Int!): [Visit!]!
+  getVisits: [Visit!]!
   getFacility(id: Int!): Facility!
   getFacilities(id: Int!): [Facility!]!
   getNotification(id: Int!): Notification!

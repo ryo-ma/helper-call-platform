@@ -1,14 +1,27 @@
 import { UseGuards } from "@nestjs/common";
 import { ContextCreator } from "@nestjs/core/helpers/context-creator";
-import { Args, Context, Int, Mutation, Query, Resolver } from "@nestjs/graphql";
+import {
+  Args,
+  Context,
+  Int,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from "@nestjs/graphql";
 import { GraphqlJwtAuthGuard } from "../auth/graphql-jwt-auth.guard";
+import { FacilitiesService } from "../facilities/facilities.service";
 import { CreateVisitInput } from "./create_visit.input";
 import { Visit } from "./visits.entity";
 import { VisitsService } from "./visits.service";
 
 @Resolver((of) => Visit)
 export class VisitsResolver {
-  constructor(private visitsService: VisitsService) {
+  constructor(
+    private visitsService: VisitsService,
+    private facilitiesService: FacilitiesService,
+  ) {
   }
   @UseGuards(GraphqlJwtAuthGuard)
   @Mutation((returns) => Visit)
@@ -31,9 +44,12 @@ export class VisitsResolver {
   }
   @UseGuards(GraphqlJwtAuthGuard)
   @Query((returns) => [Visit])
-  async getVisits(
-    @Args({ name: "id", type: () => Int }) id: number,
-  ): Promise<Visit[]> {
+  async getVisits(): Promise<Visit[]> {
     return await this.visitsService.findAll();
+  }
+  @UseGuards(GraphqlJwtAuthGuard)
+  @ResolveField()
+  async facility(@Parent() visit: Visit) {
+    return this.facilitiesService.findById(visit.facilityId);
   }
 }
