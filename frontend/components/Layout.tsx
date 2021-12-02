@@ -9,7 +9,6 @@ import {
   VStack,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
@@ -34,6 +33,7 @@ import {
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
+import Link from 'next/link';
 
 interface LinkItemProps {
   name: string;
@@ -116,7 +116,7 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({ icon, url, children, ...rest }: NavItemProps) => {
   return (
-    <Link href={url} style={{ textDecoration: 'none' }}>
+    <Link href={url}>
       <Flex
         align="center"
         p="4"
