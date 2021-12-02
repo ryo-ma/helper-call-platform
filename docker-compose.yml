@@ -1,5 +1,16 @@
 version: '3'
 services:
+  frontend:
+    build: ./frontend/
+    tty: true
+    restart: always
+    ports:
+      - '3001:3001'
+    volumes:
+      - ./frontend/:/frontend
+      - /frontend/node_modules
+    depends_on:
+      - backend
   backend:
     build: ./backend/
     tty: true
