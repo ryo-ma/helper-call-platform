@@ -2,29 +2,13 @@ import { Badge, Box, Text } from '@chakra-ui/layout';
 import { Heading, Image } from '@chakra-ui/react';
 import React from 'react';
 
-interface Facility {
+export interface Device {
   id: number;
   name: string;
-}
-export interface Schedule {
-  id: number;
-
-  todayAppearance: string;
-
-  disabilityType: string;
-
-  disabilityDescription: string;
-
-  startDateTime: Date;
-
-  endDateTime: Date;
-
-  facilityId: number;
-
-  facility: Facility;
+  type: string;
 }
 
-export default function ScheduleCard(props: { schedule: Schedule }) {
+export default function DeviceCard(props: { device: Device }) {
   return (
     <Box
       minW="sm"
@@ -39,16 +23,14 @@ export default function ScheduleCard(props: { schedule: Schedule }) {
         m={1}
         borderRadius="lg"
         height={{ base: '100%', md: '150px' }}
-        src="https://bit.ly/2Z4KKcF"
+        src="https://pbs.twimg.com/media/FEtaQdBaAAARMwX?format=jpg"
       />
       <Box p={5} minW="sm">
-        <Heading fontSize="xl">{props.schedule.facility.name}</Heading>
+        <Heading fontSize="xl">{props.device.name}</Heading>
         <Badge borderRadius="full" px="2" colorScheme="teal">
-          これから
+          {props.device.type}
         </Badge>
-        <Text>
-          {props.schedule.startDateTime} ~ {props.schedule.endDateTime}
-        </Text>
+        <Text></Text>
       </Box>
     </Box>
   );
