@@ -56,7 +56,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   const { isSignedIn } = useAuth()!;
 
   useEffect(() => {
-    if (!isSignedIn) {
+    if (!isSignedIn()) {
       router.push('/login');
     }
   }, []);
