@@ -27,10 +27,14 @@ export class CallsResolver {
     @Context() context,
   ) {
     if (call.deviceId == null) {
-      call.deviceId = (await this.devicesService.findBySerialCode(call.serialCode)).id;
+      call.deviceId =
+        (await this.devicesService.findBySerialCode(call.serialCode)).id;
     }
     const result = await this.callsService.create(call);
-    const messageText = "利用者からコールがされました。サポートをお願いします。";
+    let messageText = "利用者からコールがされました。サポートをお願いします。";
+    if (call.isCanceled) {
+      messageText = "利用者からのコールがキャンセルされました。";
+    }
     this.lineClient.push({
       messages: [
         { type: "text", text: messageText },
