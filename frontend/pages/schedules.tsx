@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import type { NextPage } from 'next';
-import ScheduleCard from '../components/ScheduleCard';
+import { useEffect, useState } from 'react';
+import ScheduleCard, { Schedule } from '../components/ScheduleCard';
 import { useAuth } from '../lib/auth';
 const schedule = {
   imageUrl: 'https://bit.ly/2Z4KKcF',
@@ -11,25 +12,38 @@ const schedule = {
 
 const Schedules: NextPage = () => {
   const { isSignedIn, createApolloClient } = useAuth()!;
-  const query = gql`
-    {
-      getVisits {
-        id
-        todayAppearance
-        disabilityType
-        disabilityDescription
-        startDateTime
-        endDateTime
-        facility {
+  const [visits, setVisits] = useState<Schedule[]>([])!;
+  useEffect(() => {
+    const query = gql`
+      {
+        getVisits {
           id
-          name
+          todayAppearance
+          disabilityType
+          disabilityDescription
+          startDateTime
+          endDateTime
+          facility {
+            id
+            name
+          }
         }
       }
-    }
-  `;
-  const client = createApolloClient();
-  console.log(client.query({ query }));
-  return <div>{isSignedIn() && <ScheduleCard schedule={schedule} />}</div>;
+    `;
+    const client = createApolloClient();
+    client.query({ query }).then((result) => {
+      console.log(result.data);
+      setVisits(result.data.getVisits);
+    });
+  }, []);
+  return (
+    <div>
+      {isSignedIn() &&
+        visits.map((visit) => {
+          return <ScheduleCard schedule={visit} />;
+        })}
+    </div>
+  );
 };
 
 export default Schedules;

@@ -30,7 +30,7 @@ export class VisitsResolver {
     @Context() context,
   ) {
     if (visit.userId == null) {
-      visit.userId = context.req.user.id;
+      visit.userId = context.req.user.userId;
     }
     const result = await this.visitsService.create(visit);
     return this.visitsService.findById(result.identifiers[0].id);
@@ -44,8 +44,8 @@ export class VisitsResolver {
   }
   @UseGuards(GraphqlJwtAuthGuard)
   @Query((returns) => [Visit])
-  async getVisits(): Promise<Visit[]> {
-    return await this.visitsService.findAll();
+  async getVisits(@Context() contex): Promise<Visit[]> {
+    return await this.visitsService.findByUser(contex.req.user.userId);
   }
   @UseGuards(GraphqlJwtAuthGuard)
   @ResolveField()

@@ -1,33 +1,29 @@
 import { NextPage } from 'next';
-import { FormEvent, FormEventHandler, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useAuth } from '../lib/auth';
+import { useRouter } from 'next/router';
+import LoginBox from '../components/LoginBox';
 
 const Login: NextPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const { signIn, signOut } = useAuth()!;
+  const router = useRouter();
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLButtonElement>) {
     e.preventDefault();
-    signIn({ username, password });
+    await signIn({ username, password });
+    router.push('/schedules');
   }
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="username"
-          onChange={(e) => setUsername(e.target.value)}
-        ></input>
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <button type="submit">Sign In</button>
-      </form>
+      <LoginBox
+        onSubmit={onSubmit}
+        onChangeUserName={(e) => setUsername(e.target.value)}
+        onChangePassword={(e) => setPassword(e.target.value)}
+      />
     </div>
   );
 };

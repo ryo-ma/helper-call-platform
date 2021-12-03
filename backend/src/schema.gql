@@ -106,7 +106,7 @@ input CreateVisitInput {
   disabilityDescription: String!
   startDateTime: DateTime!
   endDateTime: DateTime!
-  userId: Float!
+  userId: Float
   facilityId: Float!
 }
 

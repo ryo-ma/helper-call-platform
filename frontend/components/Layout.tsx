@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import {
   IconButton,
   Avatar,
@@ -34,6 +34,8 @@ import {
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useAuth } from '../lib/auth';
 
 interface LinkItemProps {
   name: string;
@@ -50,6 +52,14 @@ const LinkItems: Array<LinkItemProps> = [
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
+  const { isSignedIn } = useAuth()!;
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      router.push('/login');
+    }
+  }, []);
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent

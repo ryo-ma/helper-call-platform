@@ -1,9 +1,7 @@
-
-import { InputType,Field, } from '@nestjs/graphql';
+import { Field, InputType } from "@nestjs/graphql";
 
 @InputType()
 export class CreateVisitInput {
-
   @Field()
   todayAppearance: string;
 
@@ -19,7 +17,7 @@ export class CreateVisitInput {
   @Field()
   endDateTime: Date;
 
-  @Field()
+  @Field({ nullable: true })
   userId: number;
 
   @Field()
